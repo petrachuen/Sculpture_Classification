@@ -1,4 +1,4 @@
-# DSAN 6000 Project: Sculpture Classification
+# DSAN 6000 Project: Buddhist Sculpture Classification
 ### Author: Petra Chuenarrom
 
 ## Problem framing + scope
