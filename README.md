@@ -1,14 +1,30 @@
-# DSAN 6000 Project
-# Sculpture Classification
+# DSAN 6000 Project: Sculpture Classification
+### Author: Petra Chuenarrom
 
-## Member: Petra Chuenarrom
+## Problem framing + scope
 
-## Project Framing and Scope
+- Clear task and success criteria
+- Feasible semester scope
+- Why this problem matters to your group
 
-## Dataset Access
+## Dataset access + documentation
 
-## EDA
+- Dataset chosen and accessible
+- Source, size, license/usage notes
+- Download or access instructions
+
+## Data audit / EDA
+
+- Representative samples and summary stats
+- Class balance / key distributions as relevant
+- Obvious artifacts, biases, or likely failure modes
 
 ## Evaluation plan
 
+- Metrics appropriate to the task
+- Train/validation/test (or CV) plan
+
 ## Initial direction
+
+- What neural approach you expect to try at Check-in 2
+- Any early non-neural probe is welcome but not required yet
