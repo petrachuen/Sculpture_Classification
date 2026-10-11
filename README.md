@@ -1,5 +1,8 @@
-# DSAN 6000 Project: Buddhist Sculpture Classification
-### Author: Petra Chuenarrom
+# DSAN 6000 Project: Sculpture Classification
+### Model to classified Buddhism sculptures by its origins. 
+#### Author: Petra Chuenarrom
+
+
 
 ## Problem framing + scope
 
