@@ -1,26 +1,32 @@
 # DSAN 6000 Project: Sculpture Classification
-### Model to classified Buddhism sculptures by its origins. 
+### Fine-tuning a model to classified Buddhism sculpture by its origin
 #### Author: Petra Chuenarrom
 
+## About the Project
+
+(why this project and stuff)
+
+### Defining Success
+
+### Scope of the Project
+
+## Dataset
+
+### Dataset sources
+
+### Access Dataset
+
+## Data Audit
+
+### Summary of Data
+
+### Class balance / key distributions as relevant
+
+### Bias/ Failure modes
 
 
-## Problem framing + scope
 
-- Clear task and success criteria
-- Feasible semester scope
-- Why this problem matters to your group
 
-## Dataset access + documentation
-
-- Dataset chosen and accessible
-- Source, size, license/usage notes
-- Download or access instructions
-
-## Data audit / EDA
-
-- Representative samples and summary stats
-- Class balance / key distributions as relevant
-- Obvious artifacts, biases, or likely failure modes
 
 ## Evaluation plan
 
