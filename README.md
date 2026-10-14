@@ -22,6 +22,8 @@ A multi-class image classification. The model will fine-tuning a pre-trained mod
 
 ### Scope of the Project
 
+- Data used for training and testing will only be from the online collection of museums and research centers. The classification will only covered Buddhism in South Asia, East Asia, and Southeast Asia due to the inadequate amount of data from other regions. 
+
 ## Dataset
 
 ### Dataset sources
