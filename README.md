@@ -49,6 +49,8 @@ The following are list of collection we have gathered images of sculptures.
 
 ### Notes on Artifacts Origin
 
+It is noteworthy that though all collection are open-source, some of the artifacts are in the museums or private collections which had controversy over the legitimacy of artifact's origin. Some artifacts maybe under the request for repatriation to its home country due to the history of them being looted or illegally sold. Some museums and collections have refused repatriation or have histories of refusing repatriation. By using the data from their online collection, we do not support the refusal of repatriation for artifacts with illegitimate origin by any means. 
+
 ## Data Audit
 
 ### Summary of Data
@@ -57,8 +59,17 @@ The following are list of collection we have gathered images of sculptures.
 
 ### Bias/ Failure modes
 
+#### Bias
 
+- Majority of dataset are artifacts in collection of museums in the United States or Europe which may favor a certain style more. For example, there will be more gold, decorated, undamaged sculptures than plain wooden ones. We can seek more balance in styles via sourcing from collection in Asia but there are also difference in image quality which can cause another bias as well.
+- As we have noted in the previous section, some of the artifacts have ambiguity on its origin. As many of them have been sold through several hands, some are illegally, there existed cases where the museum or collection can not be certain of the origin
 
+#### Failure Modes
+
+- The model can classified not based on the art styles but on the materials, which is not the main goal for this project
+  - Example: During the 13th Century, in area of present-day Thailand and Cambodia, it is common for Buddhist sculpture to be made of sandstone. The model might classified these correctly but with the wrong reason. Then, if we input the sandstone sculpture from China, the model could classified its origin as Thailand. 
+- Influences of Culture
+  - Example: Sculpture found in Thailand that are from around 3rd Century could be heavily influence by India or imported from India before they developed into their own art style. Influences of art styles can make misclassification happened.
 
 
 ## Evaluation plan
