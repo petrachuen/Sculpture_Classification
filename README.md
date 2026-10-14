@@ -22,13 +22,32 @@ A multi-class image classification. The model will fine-tuning a pre-trained mod
 
 ### Scope of the Project
 
-- Data used for training and testing will only be from the online collection of museums and research centers. The classification will only covered Buddhism in South Asia, East Asia, and Southeast Asia due to the inadequate amount of data from other regions. 
+- Data used for training and testing will only be from the online collection of museums and research centers. The classification will only covered Buddhism in South Asia, East Asia, and Southeast Asia due to the inadequate amount of data from other regions.
+- The project aimed to only classified by the region with no regards to the period. Sculptures from two historic civilizations will be classified as the same class if the present-day region is the same place.
 
 ## Dataset
 
 ### Dataset sources
 
+The following are list of collection we have gathered images of sculptures. 
+- Online collection
+  - Tsz shan monastery buddhist art museum, Hong Kong
+  - The Metropolitan Museum of Art, New York
+  - Staatliche Museen zu Berlin, Germany
+  - Norton Simon Museum, Pasadena, California
+  - Rietberg Museum, Zurich, Switzerland
+  - Tibet Museum, Gruyères, Switzerland
+  - Barakat Gallery, London
+  - Asian Art Museum, San Francisco
+  - National Museum of Asian Arts, Washington, D.C.
+  - Nara National Museum, Nara, Japan
+ 
+- Online Database
+  - Online database ColBase by National Institutes for Cultural Heritage, Japan
+
 ### Access Dataset
+
+### Notes on Artifacts Origin
 
 ## Data Audit
 
