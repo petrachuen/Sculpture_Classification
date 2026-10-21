@@ -3,9 +3,17 @@
 import pandas as pd
 import numpy as np
 
+# Keyword for Filtering
+
+filterWords = ["Buddhismus", 'Buddhism', "Buddha", "Bodhisattva", "Avalokiteshvara", "Guanyin"]
+
+# All data DF
+
+sculptureDF = pd.DataFrame()
+
 # Data from Asian Art Museum
 # need re scrape, no origin info
-asianArt = pd.read_csv("./RawCSV/asianArt.csv")
+"""asianArt = pd.read_csv("./RawCSV/asianArt.csv")
 asianArt = asianArt[[
            'item_page_link',
            'data',
@@ -21,7 +29,7 @@ asianArt.rename(columns = {
     'text_1': 'Origin',
     'text_3': "Materials",
     'image': 'Image'
-    },inplace=True)
+    },inplace=True)"""
 
 
 # Data from Colbase database
@@ -46,26 +54,35 @@ colbase.rename(columns = {
 
 colbase['Origin'] = colbase['Origin'].fillna('Japan')
 
+colbase['Sources'] = "Colbase Database"
+
+colbaseCat = colbase[[
+           'Title',
+           'Origin',
+           'Sources',
+           'Image']]
+
 
 # Data from the MET collection
-met = pd.read_csv("./RawCSV/met.csv")
+"""met = pd.read_csv("./RawCSV/met.csv")
 met = met[[
-           'web_scraper_start_url',
            'data',
            'data2',
            'data3',
-           'image']]
+           'image',
+           'item_page_link'
+           ]]
 
 met.rename(columns = {
-    'web_scraper_start_url': 'URL',
     'data': 'Title',
     'data2': 'Origin',
     'data3': 'Date'
-    },inplace=True)
+    },inplace=True)"""
+
 
 # Data from narahaku Museum
 # Origin Japan
-narahaku = pd.read_csv("./RawCSV/narahaku.csv")
+"""narahaku = pd.read_csv("./RawCSV/narahaku.csv")
 narahaku = narahaku[[
            'web_scraper_start_url',
            'objectnametitle',
@@ -78,7 +95,7 @@ narahaku.rename(columns = {
     'century': 'Date'
     },inplace=True)
 
-colbase['Origin'] = 'Japan' 
+narahaku['Origin'] = 'Japan' """
 
 # Data from rietberg Museum
 rietberg = pd.read_csv("./RawCSV/rietberg.csv")
@@ -99,10 +116,34 @@ rietberg.rename(columns = {
             'text_1': 'Materials'
     },inplace=True)
 
-# Will need Translation
+# Translate Origin
+tr_Origins = {
+    'Indien': 'India',
+    'Asien': 'Asia',
+    'Indonesien': 'Indonesia',
+    'Kambodscha': 'Cambodia',
+    'Mongolei': 'Mongolia'
+}
+
+rietberg['Origin'] = rietberg['Origin'].replace(tr_Origins)
+rietberg['Sources'] = "Reitberg Museum"
+
+rietbergCat = rietberg[[
+           'Title',
+           'Origin',
+           'Sources',
+           'Image']]
+    
+
+"""text_to_translate = "Hello, how are you doing today?"
+translated_text = translator.translate(text_to_translate)
+
+print(f"Original: {text_to_translate}")
+print(f"Translated: {translated_text}")"""
+
 
 # Data from Smithsonian Museum of Asian Art
-smithsonian = pd.read_csv("./RawCSV/smithsonian.csv")
+"""smithsonian = pd.read_csv("./RawCSV/smithsonian.csv")
 smithsonian = smithsonian[[
            'web_scraper_start_url',
            'data',
@@ -115,10 +156,10 @@ smithsonian.rename(columns = {
     'data': 'Title',
     'image2': 'Origin',
     'image3': 'Date'
-    },inplace=True)
+    },inplace=True)"""
 
 # Data from staatliche zu Berlin Museum
-staatliche = pd.read_csv("./RawCSV/staatliche.csv")
+#staatliche = pd.read_csv("./RawCSV/staatliche.csv")
 """staatliche = staatliche[[
            'data',
            'data2',
@@ -133,6 +174,7 @@ staatliche.rename(columns = {
     'image3': 'Date'
     },inplace=True)"""
 
+"""smithsonian = pd.read_csv("./RawCSV/smithsonian.csv")
 smithsonian = smithsonian[[
            'web_scraper_start_url',
            'data',
@@ -145,10 +187,10 @@ smithsonian.rename(columns = {
     'data': 'Title',
     'image2': 'Origin',
     'image3': 'Date'
-    },inplace=True)
+    },inplace=True)"""
 
 # Data from Tibet Museum
-tibet = pd.read_csv("./RawCSV/tibetMuseum.csv")
+"""tibet = pd.read_csv("./RawCSV/tibetMuseum.csv")
 tibet = tibet[[
            'data',
            'data3',
@@ -161,10 +203,10 @@ tibet.rename(columns = {
     'data3': 'Origin',
     'data4': 'Date',
     'data6': 'Materials'
-    },inplace=True)
+    },inplace=True)"""
 
 # Data from tszshan museum
-tszshan = pd.read_csv("./RawCSV/tszshanMuseum.csv")
+"""tszshan = pd.read_csv("./RawCSV/tszshanMuseum.csv")
 tszshan = tszshan[[
            'web_scraper_start_url',
            'data',
@@ -179,15 +221,33 @@ tszshan.rename(columns = {
     'data2': 'Origin',
     'data4': 'Date',
     'data6': 'Materials'
-    },inplace=True)
+    },inplace=True)"""
 
 #export
-asianArt.to_csv('./CleanedCSV/C_asianArt.csv', index=False)
+#asianArt.to_csv('./CleanedCSV/C_asianArt.csv', index=False)
 colbase.to_csv('./CleanedCSV/C_colbase.csv', index=False)
-met.to_csv('./CleanedCSV/C_met.csv', index=False)
-narahaku.to_csv('./CleanedCSV/C_narahaku.csv', index=False)
+#met.to_csv('./CleanedCSV/C_met.csv', index=False)
+#narahaku.to_csv('./CleanedCSV/C_narahaku.csv', index=False)
 rietberg.to_csv('./CleanedCSV/C_reitberg.csv', index=False)
-staatliche.to_csv('./CleanedCSV/C_staatliche.csv', index=False)
-smithsonian.to_csv('./CleanedCSV/C_smithsonian.csv', index=False)
-tibet.to_csv('./CleanedCSV/C_tibetMuseum.csv', index=False)
-tszshan.to_csv('./CleanedCSV/C_tszshanMuseum.csv', index=False)
+#staatliche.to_csv('./CleanedCSV/C_staatliche.csv', index=False)
+#smithsonian.to_csv('./CleanedCSV/C_smithsonian.csv', index=False)
+#tibet.to_csv('./CleanedCSV/C_tibetMuseum.csv', index=False)
+#tszshan.to_csv('./CleanedCSV/C_tszshanMuseum.csv', index=False)
+
+
+# All data across collections
+
+sculptureDF = pd.concat([sculptureDF, rietbergCat], ignore_index=True)
+sculptureDF = pd.concat([sculptureDF, colbaseCat], ignore_index=True)
+
+for i in range(len(sculptureDF)):
+    wordsFound = False
+    for w in filterWords:
+        if w in sculptureDF.at[i, 'Title']:
+            wordsFound = True
+            break
+
+    if wordsFound == False:
+        sculptureDF = sculptureDF.drop(i)
+
+sculptureDF.to_csv('./sculpturesData.csv', index=False)
