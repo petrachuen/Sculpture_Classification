@@ -111,17 +111,18 @@ and the accuracy percentage across each classes are as follows
 
 |class  |      precision|
 |---|---|
-|Cambodia      |0.17|
+|Cambodia \*     |0.17|
 |China         |0.81|
 |Gandhara     |0.63|
 |India          |0.50|
 |Indonesia        |0.54|
 |Japan    |0.67|
 |Myanmar    |0.91|
-|Nepal       |0.00|
+|Nepal \*       |0.00|
 |Thailand     |0.61|
-|Tibet        |0.45|
+|Tibet \*        |0.45|
 
+\* is classes that fail precision expectation
 
 ## Failure Analysis
 
