@@ -288,8 +288,9 @@ sculptureDF = pd.concat([sculptureDF, tszshanCat], ignore_index=True)
 
 regionMatch = {
     'Uttar Pradesh': "India",
-    'Gandhara': "Pakistan",
-    'Gandhāra': 'Pakistan',
+    'Pakistan': 'Gandhara',
+    'Afghanistan': 'Gandhara',
+    'Gandhāra': 'Gandhara',
     'Burma': "Myanmar",
     'Zhou Xun': 'China',
     'Qiao Bin': 'China',
@@ -298,8 +299,6 @@ regionMatch = {
     'ThaiThai': 'Thailand',
     'Intan': "Japan"
 }
-
-sculptureDF['Origin'] = sculptureDF['Origin'].replace(regionMatch)
 
 
 for i in range(len(sculptureDF)):
@@ -321,7 +320,7 @@ sculptureDF = sculptureDF.reset_index(drop=True)
 
 # Clear Origin to group
 
-Classes = ["Afghanistan", "Thailand", "Tibet", "India", "China", "Nepal", "Indonesia", "Myanmar", "Laos", "Pakistan", "Sri Lanka", "Cambodia"]
+Classes = ["Gandhara", "Thailand", "Tibet", "India", "China", "Nepal", "Indonesia", "Myanmar", "Laos", "Pakistan", "Sri Lanka", "Cambodia", 'Afghanistan']
 
 for o in range(len(sculptureDF)):
     # remove the one that origin is unclear
@@ -336,16 +335,32 @@ for o in range(len(sculptureDF)):
 
     elif 'Berlin' in str(sculptureDF.at[o, 'Origin']):
                     sculptureDF = sculptureDF.drop(o)
-    
+
 sculptureDF = sculptureDF.reset_index(drop=True)
 for o in range(len(sculptureDF)):
     for c in Classes:
         if c in str(sculptureDF.at[o, 'Origin']):
             sculptureDF.at[o, 'Origin'] = c
 
+sculptureDF['Origin'] = sculptureDF['Origin'].replace(regionMatch)
+
 # drop NA
-#sculptureDF = sculptureDF.dropna()
+sculptureDF = sculptureDF.dropna()
+
+# drop low counts
+# where 20% of the counts is less than 5
+dropList = []
+oList = list(sculptureDF['Origin'].unique())
+
+for i in list(sculptureDF['Origin'].unique()):
+    if (sculptureDF['Origin'] == i).sum() < 25:
+        dropList.append(i)
+         
+sculptureDF = sculptureDF[~sculptureDF['Origin'].isin(dropList)]
 sculptureDF = sculptureDF.reset_index(drop=True)
-#print(sculptureDF['Origin'].unique())
+
+print(sculptureDF.groupby('Origin').count())
+
+# add the to-be image name to the new column
 
 sculptureDF.to_csv('./sculpturesData.csv', index=True)

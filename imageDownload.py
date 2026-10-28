@@ -10,9 +10,7 @@ from urllib3.util.retry import Retry
 from tqdm import tqdm  # pip install tqdm
 
 # ---------------------------------------------------------------
-# 1. Load your data (edit this line, or skip it if df already exists)
-# ---------------------------------------------------------------
-df = pd.read_csv("sculpturesData.csv")  # or pd.read_excel("data.xlsx")
+df = pd.read_csv("sculpturesData.csv")
 
 # ---------------------------------------------------------------
 # 2. Settings
@@ -35,7 +33,7 @@ session.headers.update({"User-Agent": "Mozilla/5.0"})
 def get_extension(url, content_type):
     """Pick a file extension from the URL, falling back to the Content-Type header."""
     ext = os.path.splitext(urlparse(url).path)[1].lower()
-    if ext in {".jpg", ".jpeg", ".png", ".gif", ".webp", ".bmp", ".tiff"}:
+    if ext in {".png", ".jpeg"}:
         return ext
     guessed = mimetypes.guess_extension((content_type or "").split(";")[0].strip())
     return guessed or ".jpg"
@@ -58,6 +56,7 @@ def download_image(idx, url):
 
         ext = get_extension(url, r.headers.get("Content-Type"))
         path = os.path.join(SAVE_DIR, f"{idx}{ext}")
+        print(path)
 
         with open(path, "wb") as f:
             for chunk in r.iter_content(chunk_size=8192):
@@ -75,7 +74,12 @@ paths = {}
 errors = {}
 
 with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
-    futures = [executor.submit(download_image, idx, url) for idx, url in df[URL_COLUMN].items()]
+    futures = []
+    for i in range(len(df)):
+        futures.append(executor.submit(download_image, df.iat[i, 0], df.iat[i, 4]))
+        #print(df.iat[i, 0], df.iat[i, 1]) 
+
+    #futures = [executor.submit(download_image, idx, url) for idx, url in df[URL_COLUMN].items()]
     for future in tqdm(as_completed(futures), total=len(futures), desc="Downloading"):
         idx, path, err = future.result()
         if err:
