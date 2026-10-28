@@ -128,7 +128,7 @@ and the accuracy percentage across each classes are as follows
 - Shape-focus
   - Currently the model is focusing on the outline shape more than the details. Thus, sculpture with similar outline shape get misclassified despite a strong difference in other details
   - Example: These two Thai sculpture has a more round-shape face (period-specific style), which is similar to Japanese-style sculpture. It get classified as a Japanese Sculpture.
-  - ![Project Screenshot](./FailureExample.png)
+    ![Project Screenshot](./FailureExample.png)
   - Improvement Plan
     - Having another classification prior to origin classification. This new classification will group sculptures by parts (only head, only body, full sculpture, group sculpture). We hope that this additional classification will make the model able to learn the difference across origin classes better.
     - Improving Image cropping to have less outline being significant. 
