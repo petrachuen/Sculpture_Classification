@@ -8,7 +8,7 @@
 
 ## About the Project
 
-(why this project and stuff)
+Classifying the newly found archeological artifacts usually required experts which will be precise but take times. This project aimed to shorten the time in making a primary classification using the existed data with accurate classification. Though we believe the classification from experts will always be needed, this could not only shorten time but assisted the research team in reaching out to the experts of a specific area easier with model's primary classification
 
 ### Defining Success
 
