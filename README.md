@@ -8,7 +8,7 @@
 
 ## About the Project
 
-(why this project and stuff)
+Classifying the newly found archeological artifacts usually required experts which will be precise but take times. This project aimed to shorten the time in making a primary classification using the existed data with accurate classification. Though we believe the classification from experts will always be needed, this could not only shorten time but assisted the research team in reaching out to the experts of a specific area easier with model's primary classification
 
 ### Defining Success
 
@@ -111,24 +111,25 @@ and the accuracy percentage across each classes are as follows
 
 |class  |      precision|
 |---|---|
-|Cambodia      |0.17|
+|Cambodia \*     |0.17|
 |China         |0.81|
 |Gandhara     |0.63|
 |India          |0.50|
 |Indonesia        |0.54|
 |Japan    |0.67|
 |Myanmar    |0.91|
-|Nepal       |0.00|
+|Nepal \*       |0.00|
 |Thailand     |0.61|
-|Tibet        |0.45|
+|Tibet \*        |0.45|
 
+\* is classes that fail precision expectation
 
 ## Failure Analysis
 
 - Shape-focus
   - Currently the model is focusing on the outline shape more than the details. Thus, sculpture with similar outline shape get misclassified despite a strong difference in other details
   - Example: These two Thai sculpture has a more round-shape face (period-specific style), which is similar to Japanese-style sculpture. It get classified as a Japanese Sculpture.
-  - ![Project Screenshot](./FailureExample.png)
+    ![Project Screenshot](./FailureExample.png)
   - Improvement Plan
     - Having another classification prior to origin classification. This new classification will group sculptures by parts (only head, only body, full sculpture, group sculpture). We hope that this additional classification will make the model able to learn the difference across origin classes better.
     - Improving Image cropping to have less outline being significant. 
