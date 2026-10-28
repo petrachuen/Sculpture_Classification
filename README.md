@@ -2,6 +2,10 @@
 ### Fine-tuning a model to classified Buddhism sculpture by its origin
 #### Author: Petra Chuenarrom
 
+---
+#### Check-in 1
+---
+
 ## About the Project
 
 (why this project and stuff)
@@ -34,18 +38,17 @@ The following are list of collection we have gathered images of sculptures.
   - Tsz shan monastery buddhist art museum, Hong Kong
   - The Metropolitan Museum of Art, New York
   - Staatliche Museen zu Berlin, Germany
-  - Norton Simon Museum, Pasadena, California
   - Rietberg Museum, Zurich, Switzerland
   - Tibet Museum, Gruyères, Switzerland
-  - Barakat Gallery, London
   - Asian Art Museum, San Francisco
   - National Museum of Asian Arts, Washington, D.C.
-  - Nara National Museum, Nara, Japan
  
 - Online Database
   - Online database ColBase by National Institutes for Cultural Heritage, Japan
 
 ### Access Dataset
+
+Images are in folder ```image```. The data are images of Buddhism Sculpture across collections, named following the index in ```sculpturesData.csv```
 
 ### Notes on Artifacts Origin
 
@@ -55,9 +58,20 @@ It is noteworthy that though all collection are open-source, some of the artifac
 
 ### Summary of Data
 
-### Class balance / key distributions as relevant
+After gathering all data and filter them to only Buddhism related data and removing, we have 1948 images across 10 classes. The distributions are as follows
 
-### Bias/ Failure modes
+| Origin | Number of Data |
+| -------- | -------- |
+| China    |801   |
+| Myanmar  |304   |
+|Thailand     |166|
+|Japan        |135|
+|India        |127|
+|Gandhara     |122|
+|Tibet        |107|
+|Indonesia     |87|
+|Nepal         |63|
+|Cambodia      |36|
 
 #### Bias
 
@@ -71,13 +85,52 @@ It is noteworthy that though all collection are open-source, some of the artifac
 - Influences of Culture
   - Example: Sculpture found in Thailand that are from around 3rd Century could be heavily influence by India or imported from India before they developed into their own art style. Influences of art styles can make misclassification happened.
 
+---
+#### Check-in 2
+---
 
-## Evaluation plan
+The model is currently using CNN Resnet-50 and fine-tuning it using our own dataset. In splitting dataset, we split each classes to ensure that every classes will have data for training, validating, and testing. The split distribution is as follows
 
-- Metrics appropriate to the task
-- Train/validation/test (or CV) plan
+|Origin |train  |val  |test|
+|--- |---  |---  |---|      
+|China        |480  |160   |161|
+|Myanmar     |182  |60  |62|
+|Thailand    |99  |33  |34|
+|Japan       |81 |27 |27|
+|India       |76 |25  |26|
+|Gandhara     |73  |24  |25|
+|Tibet        |64  |21  |22|
+|Indonesia   |52 |17  |18|
+|Nepal       |37  |12   |14|
+|Cambodia    |21 |7   |8|
 
-## Initial direction
+## Current Result
 
-- What neural approach you expect to try at Check-in 2
-- Any early non-neural probe is welcome but not required yet
+As mentioned, we want to have a success rate of at least 75% overall and at least 50% of each group. Currently, the success rate overall is 70.78%
+and the accuracy percentage across each classes are as follows
+
+|class  |      precision|
+|---|---|
+|Cambodia      |0.17|
+|China         |0.81|
+|Gandhara     |0.63|
+|India          |0.50|
+|Indonesia        |0.54|
+|Japan    |0.67|
+|Myanmar    |0.91|
+|Nepal       |0.00|
+|Thailand     |0.61|
+|Tibet        |0.45|
+
+
+## Failure Analysis
+
+- Shape-focus
+  - Currently the model is focusing on the outline shape more than the details. Thus, sculpture with similar outline shape get misclassified despite a strong difference in other details
+  - Example: These two Thai sculpture has a more round-shape face (period-specific style), which is similar to Japanese-style sculpture. It get classified as a Japanese Sculpture.
+    ![Project Screenshot](./Ayutthaya_Result)
+  - Improvement Plan
+    - Having another classification prior to origin classification. This new classification will group sculptures by parts (only head, only body, full sculpture, group sculpture). We hope that this additional classification will make the model able to learn the difference across origin classes better.
+    - Improving Image cropping to have less outline being significant. 
+- Speed
+  - Currently CNN is taking about 1 hour to train on CPU, we will try to use Faster-CNN for check-in 3
