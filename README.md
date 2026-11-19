@@ -140,6 +140,8 @@ and the accuracy percentage across each classes are as follows
 #### Check-in 3
 ---
 
+For this check-in, we did some changes into the dataset and compare the efficiency to the previous part. First, background changing, this will drive the model to relied less on certain background that could potentially be a pattern across regions. Another is to classified artifacts into a group of posture first then make prediction. This was to eliminate the model predicting on certain posture that could be popular in one region rather than the art styles. The result are as follows. 
+
 #### Background Changing
 We have attempted to remove the background from all images using `rembg` library which creating `.png` files for every images. This was done to ensure that the model are not classifying the background color. 
 
@@ -158,4 +160,22 @@ When only background color have changed, the overall accuracy has dropped to app
 |Thailand     |0.50|
 |Tibet \*        |0.46|
 
-This means that the previous model is using the background to 
+This means that the previous model is using the background as assistant in prediction. Therefore, even though this reduce the accuracy of the models, it show us the method that could lead to the more accurate if we have larger number of data. 
+
+---
+#### Specific Posture Grouping
+
+Another changed that we have made was classifying artifacts into group of posture first, then train each group separately. After classify by posture group, only two groups are large enough to porceed with training: sitting figures (744 items), and standing figures (527 items)
+
+In both cases, we only focus on the accuracy of China class since this class is the only class that is large enough for us to relied on the percision.
+
+|Posture  |precision|
+|---|---|
+|Sit     |0.75|
+|Stand  |0.83|
+
+We can see here for the standing, there are small improvement for this class. However, the difference wasn't significant. Thus, the model did not utilize the posture to help with the prediction. 
+
+---
+
+From these two changes, we can derived at the better method of training the model which is to remove the background but it is not necessary to classified by posture. 
