@@ -135,3 +135,27 @@ and the accuracy percentage across each classes are as follows
     - Improving Image cropping to have less outline being significant. 
 - Speed
   - Currently CNN is taking about 1 hour to train on CPU, we will try to use Faster-CNN for check-in 3
+
+---
+#### Check-in 3
+---
+
+#### Background Changing
+We have attempted to remove the background from all images using `rembg` library which creating `.png` files for every images. This was done to ensure that the model are not classifying the background color. 
+
+When only background color have changed, the overall accuracy has dropped to approximately 69%. The following is the current accuracy of each classes. 
+
+|class  |      precision|
+|---|---|
+|Cambodia \*     |0.30|
+|China         |0.81|
+|Gandhara     |0.61|
+|India          |0.38|
+|Indonesia        |0.62|
+|Japan    |0.68|
+|Myanmar    |0.87|
+|Nepal \*       |0.38|
+|Thailand     |0.50|
+|Tibet \*        |0.46|
+
+This means that the previous model is using the background to 
