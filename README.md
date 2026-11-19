@@ -149,18 +149,18 @@ When only background color have changed, the overall accuracy has dropped to app
 
 |class  |      precision|
 |---|---|
-|Cambodia \*     |0.30|
+|Cambodia     |0.30|
 |China         |0.81|
 |Gandhara     |0.61|
 |India          |0.38|
 |Indonesia        |0.62|
 |Japan    |0.68|
 |Myanmar    |0.87|
-|Nepal \*       |0.38|
+|Nepal       |0.38|
 |Thailand     |0.50|
-|Tibet \*        |0.46|
+|Tibet       |0.46|
 
-This means that the previous model is using the background as assistant in prediction. Therefore, even though this reduce the accuracy of the models, it show us the method that could lead to the more accurate if we have larger number of data. 
+Although there are classes that the precision improved, there are also classes that the precision dropped. This means that the previous model is using the background as assistant in prediction. Therefore, even though this reduce the accuracy of the models, it show us the method that could lead to the more accurate if we have larger number of data. 
 
 ---
 #### Specific Posture Grouping
